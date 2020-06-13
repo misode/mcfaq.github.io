@@ -1,0 +1,144 @@
+:root {
+  --dark: #363636;
+  --light: #ffffff;
+  --gray: #969696;
+  --accent: #0093c9;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Inter var,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+.content {
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+}
+
+.content > h1 {
+  display: inline
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  line-height: 1.2em;
+  border: none;
+  margin-top: 40px;
+  width: 100%;
+  max-width: 580px;
+}
+
+.search input {
+  height: 40px;
+  padding: 3px 12px;
+  background: none;
+  border: 1px solid var(--dark);
+  border-top-left-radius: 23px;
+  border-bottom-left-radius: 23px;
+  font-size: 20px;
+  outline: none;
+  flex-grow: 1;
+}
+
+.search .submit {
+  width: 46px;
+  height: 40px;
+  padding-right: 6px;
+  margin-left: -1px;
+  border: 1px solid var(--dark);
+  border-top-right-radius: 23px;
+  border-bottom-right-radius: 23px;
+  fill: var(--dark);
+  cursor: pointer;
+  transition: fill 0.2s, background-color 0.2s;
+}
+
+.search .submit:hover {
+  background-color: var(--accent);
+  fill: var(--light);
+}
+
+.search .submit svg {
+  transition: transform 0.2s;
+}
+
+.search .submit:hover svg {
+  transform: scale(1.2, 1);
+}
+
+.result-list {
+  margin-top: 25px;
+  width: 100%;
+  max-width: 580px;
+  padding: 0 5px
+}
+
+.result {
+  padding: 10px 0;
+}
+
+.result:not(:first-child) {
+  margin-top: 10px;
+  border-top: 1px dashed var(--dark);
+}
+
+.result p {
+  margin-top: 8px;
+}
+
+.result ul,
+.result ol {
+  margin-left: 20px;
+}
+
+.result code,
+.result pre {
+  background: #e5e5e5;
+}
+
+.result pre {
+  padding: 6px;
+  margin: 8px 0;
+  overflow-y: auto;
+}
+
+.result hr {
+  border: none;
+  border-bottom: 1px solid var(--gray) !important;
+  margin: 8px 0;
+}
+
+.result .question-title {
+  text-decoration: none;
+  color: var(--accent);
+}
+
+.content[data-mode=search] .result .question-title {
+  cursor: pointer;
+}
+
+.content[data-mode=answer] .search {
+  display: none;
+}
+
+.content[data-mode=answer] > sub {
+  display: none;
+}
+
+.content[data-mode=answer] .result-list {
+  max-width: 720px;
+}
+
+@media screen and (max-width: 520px) {
+  .content > h1 {
+    font-size: 24px;
+  }
+}
