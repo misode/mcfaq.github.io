@@ -23,7 +23,7 @@ export class Questions {
         { name: 'question', weight: 0.2 },
       ],
       minMatchCharLength: 3,
-      threshold: 0.5
+      threshold: 0.6
     })
   }
 
@@ -42,11 +42,11 @@ export class Questions {
   }
 
   async formatResult(r: Question): Promise<string> {
-    const answer = await new Answer(r).getPreview()
+    r.body = await new Answer(r).getPreview()
     const id = r.answer.startsWith('@') ? r.answer.slice(1) : r.question
     return `<div class="result">
       <h3 class="question-title" data-answer="${encodeURI(id)}">${r.question}</h3>
-      ${answer}
+      ${r.body}
     </div>`
   }
 }

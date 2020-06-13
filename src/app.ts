@@ -60,7 +60,6 @@ fetch('./database/questions.json')
         showAnswer(decodeURI(params.get('a')!))
       }
       if (params.has('q')) {
-        console.log("aaaa")
         searchInput.value = decodeURI(params.get('q')!)
         showSearch(decodeURI(params.get('q')!))
       }

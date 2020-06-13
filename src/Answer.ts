@@ -8,6 +8,7 @@ export class Answer {
 
   constructor(question: Question) {
     this.result = question
+    this.body = question.body
     if (!question.answer.startsWith('@')) {
       this.body = question.answer
     }
