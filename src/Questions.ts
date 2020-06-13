@@ -42,11 +42,11 @@ export class Questions {
   }
 
   async formatResult(r: Question): Promise<string> {
-    r.body = await new Answer(r).getPreview()
+    r.body = await new Answer(r).getBody()
     const id = r.answer.startsWith('@') ? r.answer.slice(1) : r.question
     return `<div class="result">
       <h3 class="question-title" data-answer="${encodeURI(id)}">${r.question}</h3>
-      ${r.body}
+      ${Answer.format(r.body.split('\n')[0])}
     </div>`
   }
 }

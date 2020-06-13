@@ -22,11 +22,6 @@ export class Answer {
     return this.body
   }
 
-  async getPreview(): Promise<string> {
-    if (this.body === undefined) await this.getBody()
-    return Answer.format(this.body!.split('\n')[0])
-  }
-
   async format(): Promise<string> {
     if (this.body === undefined) await this.getBody()
     return `<div class="result">
