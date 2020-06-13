@@ -1,0 +1,22 @@
+{
+  "questions": [
+    {
+      "tags": ["world", "generation"],
+      "version": "1.16",
+      "question": "How can I generate custom worlds?",
+      "answer": "@custom-worlds"
+    },
+    {
+      "tags": ["gun"],
+      "version": "1.16",
+      "question": "How make gun in minecraft?",
+      "answer": "🔫"
+    },
+    {
+      "tags": ["player", "item", "amount"],
+      "version": "1.16",
+      "question": "How do I detect players with X amount of items?",
+      "answer": "@players-amount-items"
+    }
+  ]
+}
