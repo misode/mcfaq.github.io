@@ -1,5 +1,5 @@
 import Fuse from 'fuse.js'
-import { Answer } from './Answer'
+import { Body } from './Body'
 
 export type Version = '1.15' | '1.16'
 
@@ -19,7 +19,7 @@ export class Questions {
     this.questions = questions
     this.fuse = new Fuse(questions, {
       keys: [
-        { name: 'keywords', weight: 1 },
+        { name: 'tags', weight: 1 },
         { name: 'question', weight: 0.2 },
       ],
       minMatchCharLength: 3,
@@ -28,7 +28,9 @@ export class Questions {
   }
 
   search(query: string): Question[] {
-    return this.fuse.search(query).map(r => r.item)
+    const fixedQuery = query
+      .replace(/\bcheck\b/g, 'detect')
+    return this.fuse.search(fixedQuery).map(r => r.item)
   }
 
   from(query: string): Question | undefined {
@@ -41,12 +43,7 @@ export class Questions {
     return this.questions.filter(r => r.question === title)[0]
   }
 
-  async formatResult(r: Question): Promise<string> {
-    r.body = await new Answer(r).getBody()
-    const id = r.answer.startsWith('@') ? r.answer.slice(1) : r.question
-    return `<div class="result">
-      <h3 class="question-title" data-answer="${encodeURI(id)}">${r.question}</h3>
-      ${Answer.format(r.body.split('\n')[0])}
-    </div>`
+  static async formatResult(r: Question): Promise<string> {
+    return Body.answer(r, true)
   }
 }
