@@ -1,1 +1,0 @@
-Using the `#minecraft:load` function tag, you can test for the value of a scoreboard entry, and only run the install function if the score doesn't exist. Make the function set the scoreboard entry to some value.

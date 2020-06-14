@@ -14,11 +14,11 @@ module.exports = (env, argv) => ({
       { test: /\.ts$/, loader: 'ts-loader' }
     ]
   },
-  plugins: [
+  plugins: argv.mode === 'production' ? [] : [
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: 'database',
+          from: '../database',
           to: 'database'
         }
       ]
