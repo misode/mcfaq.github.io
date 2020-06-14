@@ -103,6 +103,11 @@ body {
   background-color: var(--light-gray);
 }
 
+/* https://stackoverflow.com/a/51017404 */
+.search input:-webkit-autofill {
+  transition-delay: 86400s;
+}
+
 .search .submit {
   width: 46px;
   height: 40px;

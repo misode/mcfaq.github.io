@@ -20,7 +20,7 @@ export class Questions {
     this.fuse = new Fuse(questions, {
       keys: [
         { name: 'tags', weight: 1 },
-        { name: 'question', weight: 0.2 },
+        { name: 'question', weight: 0.6 },
       ],
       minMatchCharLength: 3,
       threshold: 0.6
