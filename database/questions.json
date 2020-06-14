@@ -1,22 +1,49 @@
 {
   "questions": [
     {
-      "tags": ["world", "generation"],
-      "version": "1.16",
-      "question": "How can I generate custom worlds?",
-      "answer": "@custom-worlds"
-    },
-    {
-      "tags": ["gun"],
-      "version": "1.16",
-      "question": "How make gun in minecraft?",
-      "answer": "🔫"
-    },
-    {
       "tags": ["player", "item", "amount"],
-      "version": "1.16",
       "question": "How do I detect players with X amount of items?",
       "answer": "@players-amount-items"
+    },
+    {
+      "tags": ["raycasting", "recursion"],
+      "question": "What is raycasting?",
+      "answer": "@raycasting"
+    },
+    {
+      "tags": ["datapack"],
+      "question": "How do I make a datapack?",
+      "answer": "@creating-a-datapack"
+    },
+    {
+      "tags": ["tag", "difference"],
+      "question": "What is the difference between all the tags?",
+      "answer": "@tags-disambiguation"
+    },
+    {
+      "tags": ["tps"],
+      "question": "What does TPS mean?",
+      "answer": "TPS means **ticks per second**."
+    },
+    {
+      "tags": ["mspt"],
+      "question": "What does MSPT mean?",
+      "answer": "MSPT means **milliseconds per tick**."
+    },
+    {
+      "tags": ["score", "entity"],
+      "question": "How can I detect an entity without a score?",
+      "answer": "@without-score"
+    },
+    {
+      "tags": ["datapack", "function", "install"],
+      "question": "Can I run a function after installing a data pack?",
+      "answer": "@datapack-install-function"
+    },
+    {
+      "tags": ["open", "chest", "container"],
+      "question": "How can I detect when a player opens a chest?",
+      "answer": "You can detect this using the `minecraft.custom:minecraft.open_chest`, but you cannot detect which chest was opened."
     }
   ]
 }
