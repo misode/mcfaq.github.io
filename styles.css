@@ -1,29 +1,79 @@
 :root {
   --dark: #363636;
   --light: #ffffff;
+  --light-gray: #e5e5e5;
   --gray: #969696;
   --accent: #0093c9;
+}
+
+:root[data-theme=dark] {
+  --dark: #d8d8d8;
+  --light: #363636;
+  --light-gray: #4e4e4e;
+  --gray: #797979;
+  --accent: #00aced;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  color: var(--dark)
+}
+
+html {
+  position: relative;
+  min-height: 100%;
 }
 
 body {
   font-family: Inter var,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+  background-color: var(--light);
+  margin-bottom: 80px;
+  min-width: 382px;
 }
 
 .content {
   display: flex; 
   flex-direction: column;
   align-items: center;
-  padding: 15px;
+  padding: 25px;
 }
 
 .content > h1 {
   display: inline
+}
+
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 62px;
+  background-color: var(--light-gray);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer svg {
+  margin: 0 15px;
+  width: 28px;
+  height: 28px;
+  fill: var(--gray);
+  cursor: pointer;
+  user-select: none;
+}
+.footer svg:hover {
+  fill: var(--dark)
+}
+
+:root[data-theme=dark] #theme-toggle svg:nth-child(1) {
+  display: none;
+}
+
+:root:not([data-theme=dark]) #theme-toggle svg:nth-child(2) {
+  display: none;
 }
 
 .search {
@@ -31,7 +81,7 @@ body {
   align-items: center;
   line-height: 1.2em;
   border: none;
-  margin-top: 40px;
+  margin-top: 20px;
   width: 100%;
   max-width: 580px;
 }
@@ -46,6 +96,16 @@ body {
   font-size: 20px;
   outline: none;
   flex-grow: 1;
+  transition: background-color 0.3s;
+}
+
+.search input:focus {
+  background-color: var(--light-gray);
+}
+
+/* https://stackoverflow.com/a/51017404 */
+.search input:-webkit-autofill {
+  transition-delay: 86400s;
 }
 
 .search .submit {
@@ -74,23 +134,37 @@ body {
   transform: scale(1.2, 1);
 }
 
+.status-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+}
+
 .result-list {
-  margin-top: 25px;
+  margin-top: 15px;
   width: 100%;
   max-width: 580px;
 }
 
 .result {
-  padding: 10px 0;
+  padding-top: 20px;
+  position: relative;
 }
 
 .result:not(:first-child) {
-  margin-top: 10px;
+  margin-top: 15px;
   border-top: 1px dashed var(--dark);
 }
 
+.result h1, .result h2,
+.result h3, .result h4,
+.result h5, .result h6 {
+  margin-top: 12px;
+}
+
 .result p {
-  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 .result ul,
@@ -100,7 +174,7 @@ body {
 
 .result code,
 .result pre {
-  background: #e5e5e5;
+  background: var(--light-gray);
 }
 
 .result pre {
@@ -115,17 +189,31 @@ body {
   margin: 8px 0;
 }
 
-.result .question-title {
+.result > .question-title {
+  margin-top: 0px;
   text-decoration: none;
   color: var(--accent);
+}
+
+.result > .more {
+  position: absolute;
+  color: var(--gray);
+  bottom: 0;
+  right: 0;
+}
+
+.content[data-mode=search] .result {
+  padding-right: 47px;
 }
 
 .content[data-mode=search] .result .question-title {
   cursor: pointer;
 }
 
-.content[data-mode=answer] .search {
-  display: none;
+.content[data-mode=answer] .result .question-title {
+  font-size: 24px;
+  margin-bottom: 6px;
+  cursor: pointer;
 }
 
 .content[data-mode=answer] > sub {
@@ -136,8 +224,14 @@ body {
   max-width: 720px;
 }
 
-@media screen and (max-width: 520px) {
+@media screen and (max-width: 550px) {
   .content > h1 {
     font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .content > h1 {
+    font-size: 18px;
   }
 }
