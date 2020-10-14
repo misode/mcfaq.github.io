@@ -170,6 +170,7 @@ body {
 .result ul,
 .result ol {
   margin-left: 20px;
+  margin-bottom: 8px;
 }
 
 .result code,
