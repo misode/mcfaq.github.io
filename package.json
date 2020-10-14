@@ -13,10 +13,11 @@
   "license": "MIT",
   "dependencies": {
     "@types/dompurify": "^2.0.2",
+    "@types/js-search": "^1.4.0",
     "@types/marked": "^0.7.4",
     "copy-webpack-plugin": "^6.0.1",
     "dompurify": "^2.0.11",
-    "fuse.js": "^6.0.4",
+    "js-search": "^2.0.0",
     "marked": "^1.1.0",
     "ts-loader": "^7.0.4",
     "typescript": "^3.9.3",

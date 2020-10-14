@@ -28,14 +28,16 @@ export const Body = {
   },
 
   async answer(r: Question, preview = false): Promise<string> {
-    const body = await this.get(r)
+    let body = await this.get(r)
     const lines = body.split('\n').filter(l => l.trim().length > 0)
     const id = r.answer.startsWith('@') ? r.answer.slice(1) : r.question
+    const formatted = this.format(preview ? lines[0] : body)
+      .replace(/<a href="@(.+)">/, `<a href="?a=$1" data-answer="$1">`)
     return `<div class="result">
       <h3 class="question-title" data-answer="${encodeURI(id)}">
         ${Body.sanitize(r.question)}
       </h3>
-      ${this.format(preview ? lines[0] : body)}
+      ${formatted}
       ${preview && lines.length > 1 ? `<span class="more">(more)</span>` : ''}
     </div>`
   }

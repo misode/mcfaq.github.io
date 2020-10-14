@@ -1,11 +1,10 @@
-import Fuse from 'fuse.js'
+import * as JsSearch from 'js-search'
 import { Body } from './Body'
 
 export type Version = '1.15' | '1.16'
 
 export type Question = {
-  keywords: string[]
-  version: Version,
+  tags: string[]
   question: string,
   answer: string,
   body?: string
@@ -13,24 +12,22 @@ export type Question = {
 
 export class Questions {
   private questions: Question[]
-  private fuse: Fuse<Question, Fuse.IFuseOptions<Question>>
+  private search: JsSearch.Search
 
   constructor(questions: Question[]) {
     this.questions = questions
-    this.fuse = new Fuse(questions, {
-      keys: [
-        { name: 'tags', weight: 1 },
-        { name: 'question', weight: 0.6 },
-      ],
-      minMatchCharLength: 3,
-      threshold: 0.6
-    })
+    this.search = new JsSearch.Search('question')
+    this.search.indexStrategy = new JsSearch.PrefixIndexStrategy();
+    this.search.addIndex('tags')
+    this.search.addIndex('question')
+    this.search.addDocuments(questions)
   }
 
-  search(query: string): Question[] {
+  find(query: string): Question[] {
     const fixedQuery = query
       .replace(/\bcheck\b/g, 'detect')
-    return this.fuse.search(fixedQuery).map(r => r.item)
+      .replace(/\bdatapack\b/g, 'data pack')
+    return this.search.search(fixedQuery) as Question[]
   }
 
   from(query: string): Question | undefined {

@@ -34,17 +34,18 @@ fetch('./database/questions.json')
 
     const showSearch = (query: string) => {
       contentDiv.setAttribute('data-mode', 'search')
-      const results = questions.search(query)
+      const results = questions.find(query)
       searchResults.innerHTML = ''
       if (results.length === 0) {
         showMessage(`We couldn't find any results for '${query}'.`, `Try other search terms or more general keywords.`, `<br>`, `If you need more help you can ask on the [Minecraft Commands Discord](https://discord.gg/QAFXFtZ).`)
       } else {
         Promise.all(results.map(Questions.formatResult)).then(r => {
           searchResults.innerHTML = r.join('')
-          document.querySelectorAll('.question-title').forEach(el => {
+          document.querySelectorAll('[data-answer]').forEach(el => {
             el.addEventListener('click', evt => {
               window.scrollTo(0, 0);
               reload(`./?a=${el.getAttribute('data-answer')}`)
+              evt.preventDefault()
             })
           })
         })
