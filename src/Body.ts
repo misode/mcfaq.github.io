@@ -49,7 +49,7 @@ export const Body = {
         ${Body.sanitize(r.question)}
       </h3>
       ${formatted}
-      ${preview && lines.length > 1 ? `<span class="more">(more)</span>` : ''}
+      ${preview && lines.length > 1 ? `<a class="more" href="?a=${encodeURI(id)}" data-answer="${encodeURI(id)}">(more)</a>` : ''}
     </div>`
   }
 }

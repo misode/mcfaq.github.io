@@ -204,9 +204,10 @@ body {
 
 .result > .more {
   position: absolute;
-  color: var(--gray);
   bottom: 0;
   right: 0;
+  color: var(--gray);
+  text-decoration: none;
 }
 
 .content[data-mode=search] .result {
