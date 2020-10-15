@@ -21,6 +21,7 @@ fetch('./database/questions.json')
     const showAnswer = (title: string) => {
       contentDiv.setAttribute('data-mode', 'answer')
       const result = questions.from(title)
+      document.title = result?.question + ' | MCCQ'
       if (result === undefined) {
         showMessage(`We couldn't find that question. Try one of these similar ones.`)
         showSearch(title)
@@ -91,10 +92,12 @@ fetch('./database/questions.json')
         showAnswer(decodeURI(params.get('a')!))
       }
       if (params.has('q')) {
+        document.title = 'Search | MCCQ'
         searchInput.value = decodeURI(params.get('q')!)
         showSearch(decodeURI(params.get('q')!))
       }
       if (!params.has('a') && !params.has('q')) {
+        document.title = 'Minecraft Commands Questions | MCCQ'
         searchResults.innerHTML = ''
       }
     }
