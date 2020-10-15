@@ -90,6 +90,10 @@ body {
   display: none;
 }
 
+.home-link a {
+  text-decoration: none;
+}
+
 .search {
   display: flex;
   align-items: center;
