@@ -32,7 +32,7 @@ export const Body = {
     const lines = body.split('\n').filter(l => l.trim().length > 0)
     const id = r.answer.startsWith('@') ? r.answer.slice(1) : r.question
     const formatted = this.format(preview ? lines[0] : body)
-      .replace(/<a href="@(.+)">/, `<a href="?a=$1" data-answer="$1">`)
+      .replace(/<a href="@(.+)">/, (_, a) => `<a href="?a=${encodeURI(a)}" data-answer="${encodeURI(a)}">`)
     return `<div class="result">
       <h3 class="question-title" data-answer="${encodeURI(id)}">
         ${Body.sanitize(r.question)}
