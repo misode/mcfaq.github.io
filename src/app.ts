@@ -1,6 +1,7 @@
 import { Questions } from './Questions'
 import { Body } from './Body'
 
+const homeLink = document.getElementById('home-link')!
 const contentDiv = document.getElementById('content')!
 const searchInput = (document.getElementById('search-input') as HTMLInputElement)
 const searchSubmit = document.getElementById('search-submit')!
@@ -62,6 +63,11 @@ fetch('./database/questions.json')
       const query = encodeURI(searchInput.value)
       reload(`./?q=${query}`)
     }
+
+    homeLink.addEventListener('click', evt => {
+      reload(`./`)
+      evt.preventDefault()
+    })
 
     searchInput.addEventListener('keyup', evt => {
       if (evt.which === 13) onSearch()
