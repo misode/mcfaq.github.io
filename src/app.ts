@@ -91,10 +91,7 @@ fetch('./database/questions.json')
 
     const reload = (target?: string) => {
       messageDiv.style.display = 'none';
-      if (target) {
-        history.pushState(undefined, 'Change Page', target)
-      }
-      const params = new URLSearchParams(location.search)
+      const params = new URLSearchParams(target ? (new URL(target, location.href)).searchParams : location.search)
       if (params.has('a')) {
         showAnswer(decodeURI(params.get('a')!))
       }
@@ -106,6 +103,9 @@ fetch('./database/questions.json')
       if (!params.has('a') && !params.has('q')) {
         document.title = 'Minecraft Commands Questions | MCCQ'
         searchResults.innerHTML = ''
+      }
+      if (target) {
+        history.pushState(undefined, 'Change Page', target)
       }
     }
     reload()
