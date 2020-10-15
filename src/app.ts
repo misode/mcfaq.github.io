@@ -18,6 +18,16 @@ fetch('./database/questions.json')
       messageDiv.innerHTML = message.map(m => Body.format(m)).join('')
     }
 
+    const replaceAnswerLinks = () => {
+      document.querySelectorAll('[data-answer]').forEach(el => {
+        el.addEventListener('click', evt => {
+          window.scrollTo(0, 0);
+          reload(`./?a=${el.getAttribute('data-answer')}`)
+          evt.preventDefault()
+        })
+      })
+    }
+
     const showAnswer = (title: string) => {
       contentDiv.setAttribute('data-mode', 'answer')
       const result = questions.from(title)
@@ -29,6 +39,7 @@ fetch('./database/questions.json')
         searchResults.innerHTML = ''
         Body.answer(result).then(r => {
           searchResults.innerHTML = r
+          replaceAnswerLinks();
         })
       }
     }
@@ -42,24 +53,14 @@ fetch('./database/questions.json')
       } else {
         Promise.all(results.map(Questions.formatResult)).then(r => {
           searchResults.innerHTML = r.join('')
-          document.querySelectorAll('[data-answer]').forEach(el => {
-            el.addEventListener('click', evt => {
-              window.scrollTo(0, 0);
-              reload(`./?a=${el.getAttribute('data-answer')}`)
-              evt.preventDefault()
-            })
-          })
+          replaceAnswerLinks();
         })
       }
     }
 
     const onSearch = () => {
       const query = encodeURI(searchInput.value)
-      if (query.length > 0) {
-        reload(`./?q=${query}`)
-      } else {
-        reload('./')
-      }
+      reload(`./?q=${query}`)
     }
 
     searchInput.addEventListener('keyup', evt => {

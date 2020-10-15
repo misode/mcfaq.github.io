@@ -27,6 +27,9 @@ export class Questions {
   }
 
   find(query: string): Question[] {
+    if (query.length === 0) {
+      return this.questions
+    }
     const fixedQuery = query
       .replace(/\bcheck\b/g, 'detect')
       .replace(/\bdatapack\b/g, 'data pack')
