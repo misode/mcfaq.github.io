@@ -1,6 +1,17 @@
 import marked from 'marked'
 import DOMPrurify from 'dompurify'
 import { Question } from './Questions'
+import mcfunction from './mcfunction'
+
+const hljs = require('highlight.js/lib/core');
+hljs.registerLanguage('', () => ({}));
+hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
+hljs.registerLanguage('mcfunction', mcfunction);
+marked.setOptions({
+  highlight: function(code, lang) {
+    return hljs.highlight(lang, code).value;
+  }
+});
 
 export const Body = {
   async fetch(location: string): Promise<string> {

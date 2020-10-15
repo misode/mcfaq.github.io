@@ -18,7 +18,8 @@ export class Questions {
   constructor(questions: Question[]) {
     this.questions = questions
     this.search = new JsSearch.Search('question')
-    this.search.tokenizer = new JsSearch.StemmingTokenizer(stemmer, new JsSearch.SimpleTokenizer());
+    this.search.tokenizer = new JsSearch.StemmingTokenizer(stemmer, 
+      new JsSearch.StopWordsTokenizer(new JsSearch.SimpleTokenizer()));
     this.search.indexStrategy = new JsSearch.PrefixIndexStrategy();
     this.search.addIndex('tags')
     this.search.addIndex('question')

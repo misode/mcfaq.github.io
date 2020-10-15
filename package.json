@@ -17,6 +17,7 @@
     "@types/marked": "^0.7.4",
     "copy-webpack-plugin": "^6.0.1",
     "dompurify": "^2.0.11",
+    "highlight.js": "^10.2.1",
     "js-search": "^2.0.0",
     "marked": "^1.1.0",
     "porter-stemmer": "^0.9.1",
