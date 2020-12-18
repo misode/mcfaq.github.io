@@ -16,7 +16,7 @@
     "@types/js-search": "^1.4.0",
     "@types/marked": "^0.7.4",
     "copy-webpack-plugin": "^6.0.1",
-    "dompurify": "^2.0.11",
+    "dompurify": "^2.0.17",
     "highlight.js": "^10.4.1",
     "js-search": "^2.0.0",
     "marked": "^1.1.0",
