@@ -1,16 +1,11 @@
 {
-  "name": "mccq",
+  "name": "mcfaq",
   "version": "1.0.0",
   "private": true,
-  "description": "Minecraft Commands Questions",
-  "main": "src/app.js",
   "scripts": {
     "build": "webpack -p",
     "start": "webpack-dev-server -d --content-base ./public"
   },
-  "keywords": [],
-  "author": "Misode",
-  "license": "MIT",
   "dependencies": {
     "@types/dompurify": "^2.0.2",
     "@types/js-search": "^1.4.0",
