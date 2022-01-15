@@ -14,7 +14,7 @@
     "dompurify": "^2.0.17",
     "highlight.js": "^10.4.1",
     "js-search": "^2.0.0",
-    "marked": "^1.1.0",
+    "marked": "^4.0.10",
     "porter-stemmer": "^0.9.1",
     "ts-loader": "^7.0.4",
     "typescript": "^3.9.3",
